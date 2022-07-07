@@ -20,8 +20,10 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx_rtd_theme',
     'sphinx_panels',
+    'hoverxref.extension',
 ]
 
+hoverxref_auto_ref = True
 autosectionlabel_prefix_document = True
 
 intersphinx_mapping = {
