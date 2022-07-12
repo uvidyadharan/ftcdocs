@@ -1,0 +1,24 @@
+name: "Pull Request Docs Check"
+on: 
+- pull_request
+
+env:
+  PR_NUMBER: ${{ github.event.number }}
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository  
+        uses: actions/checkout@v1
+      - name: Sphinx Build PDF
+        uses: ammaraskar/sphinx-action@master
+        with:
+          docs-folder: "docs/"
+          pre-build-command: "apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetex"
+          build-command: "make latexpdf"
+      - name: Archive PDF
+        uses: actions/upload-artifact@v3
+        with:
+          name: $PR_NUMBER-FTCDOCS.pdf
+          path: docs/build/latex/ftcdocs.pdf
