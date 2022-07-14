@@ -13,9 +13,6 @@ jobs:
       - name: Run Tune
         uses: abbbi/github-actions-tune@v1
         
-      - name: Refresh Packages
-        run: sudo apt -y update
-        
       - name: Install Dependencies
         run: sudo apt install -y texlive-xetex latexmk
         
