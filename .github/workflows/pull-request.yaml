@@ -14,10 +14,10 @@ jobs:
         uses: abbbi/github-actions-tune@v1
         
       - name: Refresh Packages
-        run: sudo apt-fast -y update
+        run: sudo brew update
         
       - name: Install Dependencies
-        run: sudo apt-fast install -y texlive-xetex latexmk
+        run: sudo brew install --cask mactex
         
       - name: Python Setup
         uses: actions/setup-python@v4
