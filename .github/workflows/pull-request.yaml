@@ -5,11 +5,130 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
-    container: ghcr.io/uvidyadharan/ftcdocs-build:0.1
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository  
         uses: actions/checkout@v2
+        
+      - name: Run Tune
+        uses: abbbi/github-actions-tune@v1
+        
+      - name: Refresh Packages
+        run: sudo apt-fast -y update
+        # Credit: https://stackoverflow.com/questions/59269850/caching-apt-packages-in-github-actions-workflow
+      - uses: actions/cache@v2
+        id: cache-packages
+        with:
+          path: ${{ runner.temp }}/cache-linux
+          key: ${{ runner.os }}-cache-packages-v2.1
+
+      - name: Install packages
+        if: steps.cache-packages.outputs.cache-hit != 'true'
+        env:
+          SOURCE: ${{ runner.temp }}/cache-linux
+        run: |
+          set +xv
+          echo "# --------------------------------------------------------"
+          echo "# Action environment variables"
+          echo "github.workspace: ${{ github.workspace }}"
+          echo "runner.workspace: ${{ runner.workspace }}"
+          echo "runner.os: ${{ runner.os }}"
+          echo "runner.temp: ${{ runner.temp }}"
+          echo "# --------------------------------------------------------"
+          echo "# Where am I?"
+          pwd
+          echo "SOURCE: ${SOURCE}"
+          ls -lha /
+          sudo du -h -d 1 / 2> /dev/null || true
+          echo "# --------------------------------------------------------"
+          echo "# APT update"
+          sudo apt update
+          echo "# --------------------------------------------------------"
+          echo "# Set up snapshot"
+          mkdir -p "${{ runner.temp }}"/snapshots/
+          echo "# --------------------------------------------------------"
+          echo "# Install tools"
+          sudo rm -f /var/lib/apt/lists/lock
+          #sudo apt install -y vim bash-completion
+          echo "# --------------------------------------------------------"
+          echo "# Take first snapshot"
+          sudo find / \
+                -type f,l \
+                -not \( -path "/sys*" -prune \) \
+                -not \( -path "/proc*" -prune \) \
+                -not \( -path "/mnt*" -prune \) \
+                -not \( -path "/dev*" -prune \) \
+                -not \( -path "/run*" -prune \) \
+                -not \( -path "/etc/mtab*" -prune \) \
+                -not \( -path "/var/cache/apt/archives*" -prune \) \
+                -not \( -path "/tmp*" -prune \) \
+                -not \( -path "/var/tmp*" -prune \) \
+                -not \( -path "/var/backups*" \) \
+                -not \( -path "/boot*" -prune \) \
+                -not \( -path "/vmlinuz*" -prune \) \
+                > "${{ runner.temp }}"/snapshots/snapshot_01.txt 2> /dev/null \
+                || true
+          echo "# --------------------------------------------------------"
+          echo "# Install dependencies"
+          sudo apt-fast install -y texlive-xetex latexmk
+          echo "# --------------------------------------------------------"
+          echo "# Take second snapshot"
+          sudo find / \
+                -type f,l \
+                -not \( -path "/sys*" -prune \) \
+                -not \( -path "/proc*" -prune \) \
+                -not \( -path "/mnt*" -prune \) \
+                -not \( -path "/dev*" -prune \) \
+                -not \( -path "/run*" -prune \) \
+                -not \( -path "/etc/mtab*" -prune \) \
+                -not \( -path "/var/cache/apt/archives*" -prune \) \
+                -not \( -path "/tmp*" -prune \) \
+                -not \( -path "/var/tmp*" -prune \) \
+                -not \( -path "/var/backups*" \) \
+                -not \( -path "/boot*" -prune \) \
+                -not \( -path "/vmlinuz*" -prune \) \
+                > "${{ runner.temp }}"/snapshots/snapshot_02.txt 2> /dev/null \
+                || true
+          echo "# --------------------------------------------------------"
+          echo "# Filter new files"
+          diff -C 1 \
+              --color=always \
+              "${{ runner.temp }}"/snapshots/snapshot_01.txt \
+              "${{ runner.temp }}"/snapshots/snapshot_02.txt \
+              | grep -E "^\+" \
+              | sed -E s/..// \
+              > "${{ runner.temp }}"/snapshots/snapshot_new_files.txt
+          < "${{ runner.temp }}"/snapshots/snapshot_new_files.txt wc -l
+          ls -lha "${{ runner.temp }}"/snapshots/
+          echo "# --------------------------------------------------------"
+          echo "# Make cache directory"
+          rm -fR "${SOURCE}"
+          mkdir -p "${SOURCE}"
+          while IFS= read -r LINE
+          do
+            sudo cp -a --parent "${LINE}" "${SOURCE}"
+          done < "${{ runner.temp }}"/snapshots/snapshot_new_files.txt
+          ls -lha "${SOURCE}"
+          echo ""
+          sudo du -sh "${SOURCE}" || true
+          echo "# --------------------------------------------------------"
+
+      - name: Copy cached packages
+        if: steps.cache-packages.outputs.cache-hit == 'true'
+        env:
+          SOURCE: ${{ runner.temp }}/cache-linux
+        run: |
+          echo "# --------------------------------------------------------"
+          echo "# Using Cached packages"
+          ls -lha "${SOURCE}"
+          sudo cp --force --recursive "${SOURCE}"/. /
+          echo "# --------------------------------------------------------"
+        
+      - name: Python Setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+          cache: 'pip'
         
       - name: Python Install Dependencies
         run: pip install -r docs/requirements.txt
