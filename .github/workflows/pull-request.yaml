@@ -14,10 +14,10 @@ jobs:
         uses: abbbi/github-actions-tune@v1
         
       - name: Refresh Packages
-        run: sudo brew update
+        run:  brew update
         
       - name: Install Dependencies
-        run: sudo brew install --cask mactex
+        run:  brew install --cask mactex
         
       - name: Python Setup
         uses: actions/setup-python@v4
