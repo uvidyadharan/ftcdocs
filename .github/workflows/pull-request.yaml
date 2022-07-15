@@ -16,17 +16,10 @@ jobs:
       - name: Refresh Packages
         run: sudo apt-fast -y update
         
-      - name: Install Latexmk
+      - name: Install Depandancies
         uses: uvidyadharan/cache-apt-pkgs-action@v1
         with:
-          packages: latexmk
-          version: 1.1
-          refresh: true 
-          
-      - name: Install Xetex
-        uses: uvidyadharan/cache-apt-pkgs-action@v1
-        with:
-          packages: texlive-xetex
+          packages: texlive-full
           version: 1.1
           refresh: true 
         
