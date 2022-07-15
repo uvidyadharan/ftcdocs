@@ -13,15 +13,14 @@ jobs:
       - name: Run Tune
         uses: abbbi/github-actions-tune@v1
         
-      - name: Refresh Packages
-        run: sudo apt-fast -y update
-        
       - name: Install Depandancies
         uses: uvidyadharan/cache-apt-pkgs-action@v1
         with:
-          packages: texlive-full
+          packages: latexmk texlive-xetex
           version: 1.1
           refresh: true 
+      - name: Install Depandancies P2
+        run: sudo apt install texlive-xetex
         
       - name: Python Setup
         uses: actions/setup-python@v4
