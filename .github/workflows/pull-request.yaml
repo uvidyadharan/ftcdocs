@@ -17,11 +17,11 @@ jobs:
         run: sudo apt-fast -y update
         
       - name: Install Packages
-        uses: awalsh128/cache-apt-pkgs-action@v1
+        uses: uvidyadharan/cache-apt-pkgs-action@v1
         with:
           packages: texlive-xetex latexmk
           version: 1.0
-          refresh: true # Force refresh / upgrade v1.0 cache.
+          refresh: true 
         
       - name: Python Setup
         uses: actions/setup-python@v4
