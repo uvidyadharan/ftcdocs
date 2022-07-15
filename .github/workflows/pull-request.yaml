@@ -16,11 +16,18 @@ jobs:
       - name: Refresh Packages
         run: sudo apt-fast -y update
         
-      - name: Install Packages
+      - name: Install Latexmk
         uses: uvidyadharan/cache-apt-pkgs-action@v1
         with:
-          packages: texlive-xetex latexmk
-          version: 1.0
+          packages: latexmk
+          version: 1.1
+          refresh: true 
+          
+      - name: Install Xetex
+        uses: uvidyadharan/cache-apt-pkgs-action@v1
+        with:
+          packages: texlive-xetex
+          version: 1.1
           refresh: true 
         
       - name: Python Setup
