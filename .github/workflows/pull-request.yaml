@@ -13,11 +13,10 @@ jobs:
       - name: Run Tune
         uses: abbbi/github-actions-tune@v1
         
-      - name: Refresh Packages
-        run: sudo apt-fast -y update
-        
-      - name: Install Dependencies
-        run: sudo apt-fast install -y texlive-xetex latexmk
+      - uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: texlive-xetex latexmk
+          version: 1.0
         
       - name: Python Setup
         uses: actions/setup-python@v4
