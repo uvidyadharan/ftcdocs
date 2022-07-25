@@ -10,9 +10,6 @@ jobs:
       - name: Checkout Repository  
         uses: actions/checkout@v2
         
-      - name: Run Tune
-        uses: abbbi/github-actions-tune@v1
-        
       - uses: awalsh128/cache-apt-pkgs-action@v1
         with:
           packages: texlive-xetex latexmk
