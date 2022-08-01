@@ -11,6 +11,10 @@ jobs:
     steps:
       - name: Checkout Repository  
         uses: actions/checkout@v2
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          ID:  ${{ github.run_attempt }}
+          TEST:  ${{ secrets.aAFJASD }}
         
       - name: Run Tune
         uses: abbbi/github-actions-tune@v1
