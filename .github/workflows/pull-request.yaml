@@ -39,6 +39,7 @@ jobs:
         with:
           name: "FTCDOCS-PR-${{ env.PR_NUMBER }}-${{ env.ID }}"
           path: docs/build/latex/ftcdocs.pdf
+          if-no-files-found: error
   spelling-check:
     runs-on: ubuntu-latest
     steps:
