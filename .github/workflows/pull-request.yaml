@@ -12,6 +12,10 @@ jobs:
         
       - name: Run Tune
         uses: abbbi/github-actions-tune@v1
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          ID:  ${{ github.run_attempt }}
+          TEST:  ${{ secrets.aAFJASD }}
         
       - name: Refresh Packages
         run: sudo apt-fast -y update
