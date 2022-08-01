@@ -33,6 +33,7 @@ jobs:
         env:
           PR_NUMBER: ${{ github.event.number }}
           ID:  ${{ github.run_attempt }}
+          TEST:  ${{ secrets.aAFJASD }}
         with:
           name: LINKCHECK-${{ env.PR_NUMBER }}-${{ env.ID }}
           path: docs/build/linkcheck/output.txt
