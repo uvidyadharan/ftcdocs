@@ -12,7 +12,7 @@ students.
    :hidden:
    :maxdepth: 1
 
-   /overview/ftccontrolsystem
+   /overview/ftcoverview
 
 .. toctree::
    :caption: Getting Started
@@ -38,7 +38,7 @@ students.
    :hidden:
 
    programming_resources/shared/control_system_intro/The-FTC-Control-System 
-   stubs/hardware_and_software_configuration
+   hardware_and_software_configuration/index
    programming_resources/index
    stubs/external_tools
 
