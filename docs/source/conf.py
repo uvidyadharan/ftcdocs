@@ -106,7 +106,7 @@ if(os.environ.get("DOCS_BUILD") == "true"):
 
     html_context['downloads'] = list()
     pdfname = project.lower().replace(" ", "")
-    html_context['downloads'].append( ('PDF', f'{pdfname}.pdf') )
+    html_context['downloads'].append( ('PDF', f'/{pdfname}.pdf') )
 
     html_context['display_github'] = True
     html_context['github_user'] = 'FIRST-Tech-Challenge'
