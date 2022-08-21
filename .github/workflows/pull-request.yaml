@@ -36,7 +36,7 @@ jobs:
       - name: Build PDF
         run: |
           make -C docs/ latex
-          make -C docs/build/latex -j 4
+          make -C docs/build/latex -j 3
         
       - name: Move PDF
         run: cp docs/build/latex/*.pdf docs/build/html/
