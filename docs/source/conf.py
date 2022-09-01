@@ -147,7 +147,7 @@ if(os.environ.get("DOCS_BUILD") == "true"):
     html_baseurl = os.environ.get("url")
 	
 	
-if(os.environ.get("OFFICIAL_BUILD") == "true"):
+if(os.environ.get("GOOGLE_ANALYTICS_ID") != None):
 	googleanalytics_enabled  = True
 	googleanalytics_id = os.environ.get("GOOGLE_ANALYTICS_ID")
 	
