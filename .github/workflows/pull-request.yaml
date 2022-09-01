@@ -31,8 +31,13 @@ jobs:
       - name: Build site
         env:
           DOCS_BUILD: 'true'
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
           SPHINXOPTS: "-D html_context.commit=${{ github.sha }} -D version=latest -A display_github=true -A github_user=${{ github.repository_owner }} -A github_repo=${{ github.event.repository.name }} -A github_version=${{ github.ref_name }} -A conf_py_path=/docs/source/"
         run: make -C docs/ html
+        
+      - name: Test Secret
+        run: echo ${{ secrets.GOOGLE_ANALYTICS_ID }}
+        
       - name: Build PDF
         run: make -C docs/ latexpdf
         
