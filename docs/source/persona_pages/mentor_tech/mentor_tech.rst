@@ -12,7 +12,8 @@ Just click on the panel for the resource you want to explore!
    
 **I AM A TECHNICAL MENTOR**
 
-.. grid:: 3
+.. grid:: 1 2 2 3
+   :gutter: 2
 
    .. grid-item-card::
       :link: ../../programming_resources/index
@@ -50,8 +51,6 @@ Just click on the panel for the resource you want to explore!
 
       Look for Programming Resources for your team!
 
-.. grid:: 3
-
    .. grid-item-card::
       :link: http://firsttechchallenge.blogspot.com/2020/12/tips-for-your-teams-engineering.html
       :link-type: url
@@ -62,7 +61,7 @@ Just click on the panel for the resource you want to explore!
 
       ^^^
 
-      Links to echnical writing resources.
+      Links to technical writing resources.
 
    .. grid-item-card::
       :link: ../../ftc_ml/index
@@ -70,11 +69,11 @@ Just click on the panel for the resource you want to explore!
       :class-header: sd-bg-primary font-weight-bold sd-text-white
       :class-body: sd-text-left body
 
-      FTC-ML Toolchain
+      Machine Learning Toolchain
 
       ^^^
 
-      FTC Machine Learning (TensorFlow) Toolkit
+      Machine Learning (TensorFlow) Toolchain
 
    .. grid-item-card::
       :link: ../../cad_resources/index

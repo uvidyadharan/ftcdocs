@@ -12,7 +12,8 @@ resource you want to explore!
    
 **I AM A VETERAN**
 
-.. grid:: 3
+.. grid:: 1 2 2 3
+   :gutter: 2
 
    .. grid-item-card::
       :link: ../../programming_resources/index
@@ -44,13 +45,11 @@ resource you want to explore!
       :class-header: sd-bg-primary font-weight-bold sd-text-white
       :class-body: sd-text-left
 
-      FTC Machine Learning
+      Machine Learning
 
       ^^^
 
-      User guide for FTC-Machine Learning toolchain.
-
-.. grid:: 3
+      User guide for FIRST Machine Learning Toolchain.
 
    .. grid-item-card::
       :link: https://www.firstinspires.org/resource-library/ftc/team-outreach-and-marketing-resources

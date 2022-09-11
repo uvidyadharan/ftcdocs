@@ -12,7 +12,8 @@ resource you want to explore!
    
 **I AM A ROOKIE**
 
-.. grid:: 4
+.. grid:: 1 2 2 4
+   :gutter: 2
 
    .. grid-item-card:: 
       :link: ../../programming_resources/index
@@ -62,8 +63,6 @@ resource you want to explore!
 
       Links to team management resources.
       
-.. grid:: 4
-
    .. grid-item-card:: 
       :link: ../../cad_resources/index
       :link-type: doc
@@ -74,7 +73,7 @@ resource you want to explore!
 
       ^^^
 
-      Look for resources for FTC Computer-Aided Design software and tutorials.
+      Look for resources for Computer-Aided Design software and tutorials.
 
    .. grid-item-card:: 
       :link: https://ftc-events.firstinspires.org/
@@ -101,7 +100,7 @@ resource you want to explore!
       Know the awards criteria before the event.
 
    .. grid-item-card:: 
-      :link: ../../stubs/faqs
+      :link: /faq/faqs
       :link-type: doc
       :class-header: sd-bg-primary font-weight-bold sd-text-white
       :class-body: sd-text-left
@@ -111,11 +110,4 @@ resource you want to explore!
       ^^^
 
       Rookie team FAQs and answers
-
-.. toctree::
-   :maxdepth: 1
-   :titlesonly:
-   :hidden:
-
-   ../../stubs/faqs
 
