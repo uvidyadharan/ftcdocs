@@ -1,7 +1,7 @@
 Game Manuals
 ============
 
-Game Manuals can be found on the `Game and Season Materials page <https://www.firstinspires.org/resource-library/ftc/game-and-season-info>`__ on the *FIRST* Website. They are presented here for your convenience.
+Game Manuals can be found on the `Game and Season Materials page <https://www.firstinspires.org/resourcsdfasfdasdfasdfe-library/ftc/game-and-season-info>`__ on the *FIRST* Website. They are presented here for your convenience.
 
 .. only:: html
 
