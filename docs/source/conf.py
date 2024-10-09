@@ -25,7 +25,6 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx_design',
-    'sphinx_rtd_dark_mode',
     'sphinxcontrib.googleanalytics',
     'sphinxcontrib.cookiebanner',
     'sphinxcontrib.mermaid',
@@ -341,6 +340,7 @@ if(os.environ.get("LOCAL_DOCS_BUILD") == "true"):
     html_context['github_version'] = 'main/docs/source/'
     cookiebanner_enabled = True
 
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
 
 if(os.environ.get("RTD_DOCS_BUILD") == "true"):
     cookiebanner_enabled = True
